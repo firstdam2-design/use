@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>농구 2심제 연습기 v0.15</title>
+    <title>농구 2심제 연습기 v0.13</title>
     <style>
         /* 기본 스타일 및 레이아웃 */
         body { font-family: 'Malgun Gothic', sans-serif; margin: 0; background-color: #f2f2f2; display: flex; justify-content: center; padding: 20px; }
@@ -115,24 +115,24 @@
         "퍼플": { bg: "#8e44ad", text: "#ffffff" },
     };
 
-    const quarters = ["1Q", "2Q", "3Q", "4Q", "연장"];
+    const quarters = ["1Q", "2Q", "3Q", "4Q", "연장Q"];
     const teams = Object.keys(colorMap);
     const fouls = ["해킹", "푸싱", "블락", "홀딩", "핸드체킹"];
 
     const scenarios = {
         LEAD: [
-            { area: '4번 구역', act: '점프슛', f: '해킹', res: '슛은 실패.', g: '휘슬+주먹 > "투샷!"+2손가락\n테이블 쪽 > "{def}/{num}번/{foul}/투샷"\n스위치 > 프리드로우(트레일 롤)' },
-            { area: '5번 구역', act: '레이업슛', f: '푸싱', res: '슛은 성공.', g: '휘슬+주먹 > "투카운트, 원샷"+시그널\n테이블 쪽 > "{def}/{num}번/{foul}/원샷"\n스위치 > 프리드로우(트레일 롤)' },
-            { area: '4번 구역', act: '포스트업', f: '블락', res: '파울!', g: '휘슬+주먹 > "{off} 볼!"+공격방향 지시\n테이블 쪽 > "{def}/{num}번/{foul}/{off}볼"\n스위치 > 니어 라인 드로인' },
-            { area: '4번 구역', res: '수비팀 {def} 아웃오브바운드!', g: '휘슬+손바닥 > "{off} 볼!"+공격방향 지시\n아웃 라인 드로인(휘슬) > 헨딩 후 5초 카운트\n패스 시 찹 시그널' },
-            { area: '5번 구역', res: '공격팀 {off} 아웃오브바운드!', g: '휘슬+손바닥 > "{def} 볼!"+반대코트 지시\n아웃 라인 드로인 지정\n핸딩 후 패스 시 찹 시그널' }
+            { area: '4번 구역', act: '점프슛', f: '해킹', res: '슛은 실패.', g: '▶휘슬+주먹 > "투샷!"+2손가락\n▶테이블 쪽 > "{def}/{num}번/{foul}/투샷"\n▶스위치 > 프리드로우(트레일 롤)' },
+            { area: '5번 구역', act: '레이업슛', f: '푸싱', res: '슛은 성공.', g: '▶휘슬+주먹 > "투카운트, 원샷"+시그널\n▶테이블 쪽 > "{def}/{num}번/{foul}/원샷"\n▶스위치 > 프리드로우(트레일 롤)' },
+            { area: '4번 구역', act: '포스트업', f: '블락', res: '파울!', g: '▶휘슬+주먹 > "{off} 볼!"+공격방향 지시\n▶테이블 쪽 > "{def}/{num}번/{foul}/{off}볼"\n▶스위치 > 니어 라인 드로인' },
+            { area: '4번 구역', res: '수비팀 {def} 아웃오브바운드!', g: '▶휘슬+손바닥 > "{off} 볼!"+공격방향 지시\n▶아웃 라인 드로인(휘슬) > 헨딩 후 5초 카운트\n▶패스 시 찹 시그널' },
+            { area: '5번 구역', res: '공격팀 {off} 아웃오브바운드!', g: '▶휘슬+손바닥 > "{def} 볼!"+반대코트 지시\n▶아웃 라인 드로인 지정\n▶핸딩 후 패스 시 찹 시그널' }
         ],
         TRAIL: [
-            { area: '1번 구역', act: '3점슛', f: '해킹', res: '슛은 실패.', g: '휘슬+주먹 > "쓰리샷!"+세손가락\n테이블 쪽 > "{def}/{num}번/{foul}/쓰리샷"\n스위치 > 프리드로우(리드 롤)' },
-            { area: '2번 구역', act: '드리블', f: '핸드체킹', res: '파울!', g: '휘슬+주먹 > "{off} 볼"+공격방향 지시\n테이블 쪽 > "{def}/{num}번/{foul}/{off}볼"\n스위치 > 니어 라인 드로인' },
-            { area: '3번 구역', res: '수비팀 {def} 아웃오브바운드!', g: '휘슬+손바닥 > "{off} 볼!"+공격방향 지시\n아웃 라인 드로인(휘슬) > 헨딩 후 5초 카운트\n패스 시 찹 시그널' },
-            { area: '6번 구역', act: '점프슛', f: '홀딩', res: '슛은 성공.', g: '휘슬+주먹 > "투카운트, 원샷"+시그널\n테이블 쪽 > "{def}/{num}번/{foul}/원샷"\n스위치 > 프리드로우 (리드 롤)' },
-            { area: '2번 구역', res: '공격팀 {off} 아웃오브바운드!', g: '휘슬+손바닥 > "{def} 볼!"+반대코트 지시\n아웃 라인 드로인 지정\n핸딩 후 패스 시 찹 시그널' }
+            { area: '1번 구역', act: '3점슛', f: '해킹', res: '슛은 실패.', g: '▶휘슬+주먹 > "쓰리샷!"+세손가락\n▶테이블 쪽 > "{def}/{num}번/{foul}/쓰리샷"\n▶스위치 > 프리드로우(리드 롤)' },
+            { area: '2번 구역', act: '드리블', f: '핸드체킹', res: '파울!', g: '▶휘슬+주먹 > "{off} 볼"+공격방향 지시\n▶테이블 쪽 > "{def}/{num}번/{foul}/{off}볼"\n▶스위치 > 니어 라인 드로인' },
+            { area: '3번 구역', res: '수비팀 {def} 아웃오브바운드!', g: '▶휘슬+손바닥 > "{off} 볼!"+공격방향 지시\n▶아웃 라인 드로인(휘슬) > 헨딩 후 5초 카운트\n▶패스 시 찹 시그널' },
+            { area: '6번 구역', act: '점프슛', f: '홀딩', res: '슛은 성공.', g: '▶휘슬+주먹 > "투카운트, 원샷"+시그널\n▶테이블 쪽 > "{def}/{num}번/{foul}/원샷"\n▶스위치 > 프리드로우 (리드 롤)' },
+            { area: '2번 구역', res: '공격팀 {off} 아웃오브바운드!', g: '▶휘슬+손바닥 > "{def} 볼!"+반대코트 지시\n▶아웃 라인 드로인 지정\n▶핸딩 후 패스 시 찹 시그널' }
         ]
     };
 
@@ -160,8 +160,8 @@
         const fType = fouls[Math.floor(Math.random() * fouls.length)];
 
         document.getElementById('info-pos').innerText = isL ? "리 드" : "트레일";
-		updateBadge('info-off', offT, '공격');
-        updateBadge('info-def', defT, '수비');
+		updateBadge('info-off', offT, '공격팀');
+        updateBadge('info-def', defT, '수비팀');
         document.getElementById('info-quarter').innerText = q;
         document.getElementById('info-court').innerText = `${bench} 코트`;
 
@@ -171,10 +171,10 @@
 
         let sitHtml = "";
         if (s.act) {
-            sitHtml = `${s.area}에서 ${offT} ${s.act} 할 때,<br>${defT} ${pNum}번 ${fType}, ${s.res}`;
+            sitHtml = `▶${s.area}에서 ${offT} ${s.act} 할 때,<br>▶${defT} ${pNum}번 ${fType}, ${s.res}`;
         } else {
             const resClean = s.res.replace('{def}', defT).replace('{off}', offT);
-            sitHtml = `${s.area} 부근 라인 경합!<br> ${resClean}`;
+            sitHtml = `▶${s.area} 부근 라인 경합!<br>▶${resClean}`;
         }
         document.getElementById('display-situation').innerHTML = sitHtml;
         currentGuide = s.g.replace(/{def}/g, defT).replace(/{off}/g, offT).replace(/{num}/g, pNum).replace(/{foul}/g, fType);
