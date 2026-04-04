@@ -29,7 +29,7 @@
         .label-green { background: #27ae60; }
 
         .text-display { font-size: 1.15rem; line-height: 1.6; font-weight: bold; color: #222; display: flex; align-items: center; }
-        .guide-text { font-weight: normal; color: #444; white-space: pre-line; }
+        .guide-text { font-weight: bold; color: #c0392b; white-space: pre-line; }
 
         .btn-wrap { display: flex; align-items: center; justify-content: center; }
         .push-btn { 
@@ -50,12 +50,12 @@
             
             /* 가독성 핵심: 중앙 텍스트(1fr)를 위해 양옆 너비 축소 */
             .content-box { 
-                grid-template-columns: 55px 1fr 95px; 
-                gap: 8px; 
+                grid-template-columns: 50px 1fr 70px; 
+                gap: 10px; 
                 padding: 12px 8px; 
-                min-height: 120px;
+                min-height: 100px;
             }
-            .side-label { width: 45px; font-size: 0.8rem; height: 55px; border-radius: 4px; }
+            .side-label { width: 45px; font-size: 0.8rem; height: 100px; border-radius: 4px; }
             .text-display { font-size: 0.9rem; line-height: 1.4; }
             .push-btn { font-size: 0.8rem; padding: 10px 2px; border-radius: 6px; box-shadow: 0 3px 0 #333; }
             .divider { margin: 0 10px; }
@@ -121,18 +121,18 @@
 
     const scenarios = {
         LEAD: [
-            { area: '4번 구역', act: '점프슛', f: '해킹', res: '슛 실패.', g: '휘슬+주먹>"투샷!"+두손가락\n테이블 쪽>"{def}/{num}번/{foul}/투샷"\n스위치>프리드로(트레일 롤)' },
-            { area: '5번 구역', act: '레이업슛', f: '푸싱', res: '슛 성공.', g: '휘슬+주먹>"투카운트, 원샷"+시그널\n테이블 쪽>"{def}/{num}번/{foul}/원샷"\n스위치>프리드로(트레일 롤)' },
-            { area: '4번 구역', act: '포스트업', f: '블락', res: '파울!', g: '휘슬+주먹>"{off} 볼!"+공격방향 지시\n테이블 쪽>"{def}/{num}번/{foul}/{off}볼"\n스위치>니어라인 드로인' },
-            { area: '4번 구역', res: '{def} 아웃오브바운드!', g: '휘슬+손바닥>"{off} 볼!"+공격방향 지시\n아웃라인 드로인(휘슬)>헨딩 후 5초 카운트\n패스 시 찹시그널' },
-            { area: '5번 구역', res: '{off} 아웃오브바운드!', g: '휘슬+손바닥>"{def} 볼!"+반대코트 지시\n아웃라인 드로인 지정\n핸딩 후 패스 시 찹시그널' }
+            { area: '4번 구역', act: '점퍼', f: '해킹', res: '노골!', g: '휘슬주먹>"투샷!"두손가락\n테이블>"{def}/{num}번/{foul}/투샷"\n스위치>프리드로(트레일)' },
+            { area: '5번 구역', act: '레이업', f: '푸싱', res: '골인!', g: '휘슬주먹>"투카운트, 원샷"\n테이블>"{def}/{num}번/{foul}/원샷"\n스위치>프리드로(트레일)' },
+            { area: '4번 구역', act: '드리블', f: '블락', res: '파울!', g: '휘슬주먹>"{off} 볼!"공격방향\n테이블>"{def}/{num}번/{foul}/{off}볼"\n스위치>드로인' },
+            { area: '4번 구역', res: '{def} 아웃오브바운드!', g: '휘슬손바닥>"{off} 볼!"공격방향\n드로인(휘슬)>헨딩>5카운트\n패스>찹시그널' },
+            { area: '5번 구역', res: '{off} 아웃오브바운드!', g: '휘슬손바닥>"{def} 볼!"반대코트\n드로인 지정\n핸딩>패스>찹시그널' }
         ],
         TRAIL: [
-            { area: '1번 구역', act: '3점슛', f: '해킹', res: '슛 실패.', g: '휘슬+주먹>"쓰리샷!"+세손가락\n테이블 쪽 > "{def}/{num}번/{foul}/쓰리샷"\n스위치>프리드로(리드 롤)' },
-            { area: '2번 구역', act: '드리블', f: '핸드체킹', res: '파울!', g: '휘슬+주먹>"{off} 볼"+공격방향 지시\n테이블 쪽>"{def}/{num}번/{foul}/{off}볼"\n스위치>니어라인 드로인' },
-            { area: '3번 구역', res: '{def} 아웃오브바운드!', g: '휘슬+손바닥>"{off} 볼!"+공격방향 지시\n아웃라인 드로인(휘슬)>헨딩 후 5카운트\n패스 시 찹시그널' },
-            { area: '6번 구역', act: '점프슛', f: '홀딩', res: '슛 성공.', g: '휘슬+주먹>"투카운트, 원샷"+시그널\n테이블 쪽>"{def}/{num}번/{foul}/원샷"\n스위치>프리드로(리드 롤)' },
-            { area: '2번 구역', res: '{off} 아웃오브바운드!', g: '휘슬+손바닥>"{def} 볼!"+반대코트 지시\n아웃라인 드로인 지정\n핸딩 후 패스 시 찹시그널' }
+            { area: '1번 구역', act: '3점', f: '해킹', res: '노골!', g: '휘슬주먹>"쓰리샷!"세손가락\n테이블> "{def}/{num}번/{foul}/쓰리샷"\n스위치>프리드로(리드)' },
+            { area: '2번 구역', act: '드리블', f: '핸드체킹', res: '파울!', g: '휘슬주먹>"{off} 볼"공격방향\n테이블>"{def}/{num}번/{foul}/{off}볼"\n스위치>드로인' },
+            { area: '3번 구역', res: '{def} 아웃오브바운드!', g: '휘슬손바닥>"{off} 볼!"공격방향\n드로인(휘슬)>헨딩>5카운트\n패스>찹시그널' },
+            { area: '6번 구역', act: '점퍼', f: '홀딩', res: '골인!', g: '휘슬주먹>"투카운트, 원샷"\n테이블>"{def}/{num}번/{foul}/원샷"\n스위치>프리드로(리드)' },
+            { area: '2번 구역', res: '{off} 아웃오브바운드!', g: '휘슬손바닥>"{def} 볼!"반대코트\n드로인 지정\n핸딩>패스>찹시그널' }
         ]
     };
 
