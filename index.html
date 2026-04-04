@@ -171,7 +171,7 @@
 
         let sitHtml = "";
         if (s.act) {
-            sitHtml = `${s.area}에서 ${offT} ${s.act} 할 때,<br>- ${defT} ${pNum}번 ${fType}, ${s.res}`;
+            sitHtml = `${s.area}에서 ${offT} ${s.act} 할 때,<br>${defT} ${pNum}번 ${fType}, ${s.res}`;
         } else {
             const resClean = s.res.replace('{def}', defT).replace('{off}', offT);
             sitHtml = `${s.area} 부근 라인 경합!<br> ${resClean}`;
