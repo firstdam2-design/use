@@ -160,8 +160,8 @@
         const fType = fouls[Math.floor(Math.random() * fouls.length)];
 
         document.getElementById('info-pos').innerText = isL ? "리 드" : "트레일";
-		updateBadge('info-off', offT, '공격팀');
-        updateBadge('info-def', defT, '수비팀');
+		updateBadge('info-off', offT, '공격');
+        updateBadge('info-def', defT, '수비');
         document.getElementById('info-quarter').innerText = q;
         document.getElementById('info-court').innerText = `${bench} 코트`;
 
