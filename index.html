@@ -78,8 +78,8 @@
 
     <div class="badge-row">
         <div id="info-pos" class="badge bg-gray">리드 포지션</div>
-		<div id="info-def" class="badge dynamic-badge">수비팀: 로딩중</div>
 		<div id="info-off" class="badge dynamic-badge">공격팀: 로딩중</div>
+		<div id="info-def" class="badge dynamic-badge">수비팀: 로딩중</div>
 		<div id="info-quarter" class="badge bg-gray">1Q: 자기벤치로 공격</div>
 		<div id="info-court" class="badge bg-gray">코트: 로딩중</div>
 
@@ -160,8 +160,8 @@
         const fType = fouls[Math.floor(Math.random() * fouls.length)];
 
         document.getElementById('info-pos').innerText = isL ? "리 드" : "트레일";
-		updateBadge('info-off', offT, '');
-        updateBadge('info-def', defT, '');
+		updateBadge('info-off', offT, '공:');
+        updateBadge('info-def', defT, '수:');
         document.getElementById('info-quarter').innerText = q;
         document.getElementById('info-court').innerText = `${bench} 코트`;
 
