@@ -142,7 +142,7 @@
     function updateBadge(id, teamName, prefix) {
         const el = document.getElementById(id);
         const colors = colorMap[teamName];
-        el.innerText = `${teamName}`;
+        el.innerText = `${prefix}: ${teamName}`;
         el.style.backgroundColor = colors.bg;
         el.style.color = colors.text;
     }
@@ -160,7 +160,7 @@
         const fType = fouls[Math.floor(Math.random() * fouls.length)];
 
         document.getElementById('info-pos').innerText = isL ? "리 드" : "트레일";
-		updateBadge('info-off', offT, '공격,);
+		updateBadge('info-off', offT, '공격');
         updateBadge('info-def', defT, '수비');
         document.getElementById('info-quarter').innerText = q;
         document.getElementById('info-court').innerText = `${bench} 코트`;
