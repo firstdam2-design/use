@@ -50,15 +50,15 @@
             
             /* 가독성 핵심: 중앙 텍스트(1fr)를 위해 양옆 너비 축소 */
             .content-box { 
-                grid-template-columns: 50px 1fr 50px; 
-                gap: 8px; 
-                padding: 12px 8px; 
+                grid-template-columns: 60px 1fr 0px; 
+                gap: 20px; 
+                padding: 12px 12px; 
                 min-height: 150px;
             }
             .side-label { width: 40px; font-size: 0.8rem; height: 150px; border-radius: 4px; }
-            .text-display { font-size: 0.8rem; line-height: 2.0; }
-            .push-btn { font-size: 0.8rem; padding: 10px 2px; border-radius: 6px; box-shadow: 0 3px 0 #333; }
-            .divider { margin: 0 10px; }
+            .text-display { font-size: 0.85rem; line-height: 1.8; }
+            .push-btn { font-size: 0.9rem; padding: 20px 2px; border-radius: 6px; box-shadow: 0 3px 0 #333; }
+            .divider { margin: 0 20px; }
         }
     </style>
 </head>
@@ -77,30 +77,29 @@
     </div>
 
     <div class="badge-row">
+			<div id="info-quarter" class="badge bg-gray">1Q</div>
         <div id="info-pos" class="badge bg-gray">리드 포지션</div>
 		<div id="info-off" class="badge dynamic-badge">공격팀: 로딩중</div>
 		<div id="info-def" class="badge dynamic-badge">수비팀: 로딩중</div>
-		<div id="info-quarter" class="badge bg-gray">1Q: 자기벤치로 공격</div>
-		<div id="info-court" class="badge bg-gray">코트: 로딩중</div>
-
     </div>
 
     <div class="content-box">
-        <div class="side-label label-orange">상 황</div>
-        <div id="display-situation" class="text-display">데이터 로딩 중...</div>
-        <div class="btn-wrap">
-            <button class="push-btn" id="btn-next">생 성</button>
+
+		<div class="btn-wrap">
+            <button class="push-btn" id="btn-next">상 황</button>
         </div>
+        <div id="display-situation" class="text-display">데이터 로딩 중...</div>
+
     </div>
 
     <div class="divider"></div>
 
     <div class="content-box">
-        <div class="side-label label-green">대 응</div>
-        <div id="display-guide" class="text-display guide-text">버튼을 눌러 확인하세요!</div>
-        <div class="btn-wrap">
-            <button class="push-btn" id="btn-guide">확 인</button>
+	        <div class="btn-wrap">
+            <button class="push-btn" id="btn-guide">대 응</button>
         </div>
+        <div id="display-guide" class="text-display guide-text">버튼을 눌러 확인하세요!</div>
+
     </div>
 </div>
 
@@ -121,18 +120,18 @@
 
     const scenarios = {
         LEAD: [
-            { area: '4구역', act: '점프슛', f: '해킹', res: '노골', g: '삑! 주먹 "투샷" 두손가락\n테이블 "{def}/{num}번/{foul}/투샷"\n스위치 > 프리드로(트레일)' },
-            { area: '5구역', act: '레이업', f: '푸싱', res: '골인', g: '삑! 주먹 "투카운트 원샷"\n테이블 "{def}/{num}번/{foul}/원샷"\n스위치 > 프리드로(트레일)' },
-            { area: '4구역', act: '드리블', f: '블락', res: '파울', g: '삑! 주먹 "{off} 볼" 공격쪽 손\n테이블 "{def}/{num}번/{foul}/{off} 볼"\n스위치 > 드로인' },
-            { area: '4구역', res: '{def} 아웃오브바운드!', g: '삑! 손 "{off} 볼" 공격쪽 손\n드로인(휘슬) > 헨딩 > 5카운트\n패스 > 찹시그널' },
-            { area: '5구역', res: '{off} 아웃오브바운드!', g: '삑! 손 "{def} 볼" 반대쪽 손\n드로인 핸딩 > 패스 > 찹시그널' }
+            { area: '4구역', act: '점프슛', f: '해킹', res: '노골', g: '삑! 주먹 "투샷" 두손가락\n테이블 "{def} / {num}번 / {foul} / 투샷"\n스위치 > 프리드로(트레일)' },
+            { area: '5구역', act: '레이업', f: '푸싱', res: '골인', g: '삑! 주먹 "투카운트 원샷"\n테이블 "{def} / {num}번 / {foul} / 원샷"\n스위치 > 프리드로(트레일)' },
+            { area: '4구역', act: '드리블', f: '블락', res: '파울', g: '삑! 주먹 "{off} 볼" 공격코트쪽 손\n테이블 "{def} / {num}번 / {foul} / {off} 볼"\n스위치 > 드로인' },
+            { area: '4구역', res: '{def} 아웃오브바운드!', g: '삑! 손 "{off} 볼" 공격코트쪽 손\n드로인(휘슬) > 헨딩 > 5카운트\n패스 > 찹시그널' },
+            { area: '5구역', res: '{off} 아웃오브바운드!', g: '삑! 손 "{def} 볼" 반대코트쪽 손\n드로인 핸딩 > 패스 > 찹시그널' }
         ],
         TRAIL: [
-            { area: '1구역', act: '3점슛', f: '해킹', res: '노골', g: '삑! 주먹 "쓰리샷" 세손가락\n테이블 "{def}/{num}번/{foul}/쓰리샷"\n스위치 > 프리드로(리드)' },
-            { area: '2구역', act: '드리블', f: '핸드체킹', res: '파울', g: '삑! 주먹 "{off} 볼"공격쪽 손\n테이블 "{def}/{num}번/{foul}/{off} 볼"\n스위치 > 드로인' },
-            { area: '3구역', res: '{def} 아웃오브바운드!', g: '삑! 손 "{off} 볼" 공격쪽 손\n드로인(휘슬) > 헨딩 > 5카운트\n패스 > 찹시그널' },
-            { area: '6구역', act: '3점슛', f: '홀딩', res: '골인', g: '삑! 주먹 "쓰리카운트 원샷"\n테이블 "{def}/{num}번/{foul}/원샷"\n스위치 > 프리드로(리드)' },
-            { area: '1구역', res: '{off} 아웃오브바운드!', g: '삑! 손 "{def} 볼" 반대쪽 손\n드로인 > 핸딩 > 패스 > 찹시그널' }
+            { area: '1구역', act: '3점슛', f: '해킹', res: '노골', g: '삑! 주먹 "쓰리샷" 세손가락\n테이블 "{def} / {num}번 / {foul} / 쓰리샷"\n스위치 > 프리드로(리드)' },
+            { area: '2구역', act: '드리블', f: '핸드체킹', res: '파울', g: '삑! 주먹 "{off} 볼"공격코트쪽 손\n테이블 "{def} / {num}번 / {foul} / {off} 볼"\n스위치 > 드로인' },
+            { area: '3구역', res: '{def} 아웃오브바운드!', g: '삑! 손 "{off} 볼" 공격코트쪽 손\n드로인(휘슬) > 헨딩 > 5카운트\n패스 > 찹시그널' },
+            { area: '6구역', act: '3점슛', f: '홀딩', res: '골인', g: '삑! 주먹 "쓰리카운트 원샷"\n테이블 "{def} / {num}번 / {foul} / 원샷"\n스위치 > 프리드로(리드)' },
+            { area: '1구역', res: '{off} 아웃오브바운드!', g: '삑! 손 "{def} 볼" 반대코트쪽 손\n드로인 > 핸딩 > 패스 > 찹시그널' }
         ]
     };
 
@@ -163,7 +162,7 @@
 		updateBadge('info-off', offT, '볼');
         updateBadge('info-def', defT, '디');
         document.getElementById('info-quarter').innerText = q;
-        document.getElementById('info-court').innerText = `${bench} 코트`;
+        /*document.getElementById('info-court').innerText = `${bench} 코트`;*/
 
         const pool = isL ? scenarios.LEAD : scenarios.TRAIL;
         const s = pool[Math.floor(Math.random() * pool.length)];
