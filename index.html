@@ -120,18 +120,18 @@
 
     const scenarios = {
         LEAD: [
-            { area: '4구역', act: '점프슛', f: '해킹', res: '노골', g: '삑! 주먹 "투샷" 두손가락\n테이블 "{def} / {num}번 / {foul} / 투샷"\n스위치 > 프리드로 (트레일)' },
-            { area: '5구역', act: '레이업', f: '푸싱', res: '골인', g: '삑! 주먹 "투카운트 원샷"\n테이블 "{def} / {num}번 / {foul} / 원샷"\n스위치 > 프리드로 (트레일)' },
-            { area: '4구역', act: '드리블', f: '블락', res: '파울', g: '삑! 주먹 "{off} 볼" 공격코트쪽 손\n테이블 "{def} / {num}번 / {foul} / {off} 볼"\n스위치 > 드로인' },
-            { area: '4구역', res: '{def} 아웃오브바운드!', g: '삑! 손 "{off} 볼" 공격코트쪽 손\n드로인 (휘슬) > 헨딩 > 5카운트\n패스 > 찹시그널' },
-            { area: '5구역', res: '{off} 아웃오브바운드!', g: '삑! 손 "{def} 볼" 반대코트쪽 손\n드로인 핸딩 > 패스 > 찹시그널' }
+            { area: '4구역', act: '슈팅', f: '해킹', res: '노골', g: '삑! 주먹 "투샷" 두손가락\n테이블 "{def} / {num}번 / {foul} / 투샷"\n스위치 > 프리드로 (트레일)' },
+            { area: '5구역', act: '슈팅', f: '푸싱', res: '골인', g: '삑! 주먹 "투카운트 원샷"\n테이블 "{def} / {num}번 / {foul} / 원샷"\n스위치 > 프리드로 (트레일)' },
+            { area: '4구역', act: '돌파', f: '블락', res: '드로인', g: '삑! 주먹 "{off} 볼" 공격코트쪽 손\n테이블 "{def} / {num}번 / {foul} / {off} 볼"\n스위치 > 드로인' },
+            { area: '4구역', res: '{def} OO번의 터치아웃!', g: '삑! 손 "{off} 볼" 공격코트쪽 손\n드로인 (휘슬) > 헨딩 > 5카운트\n패스 > 찹시그널' },
+            { area: '5구역', res: '{off} OO번의 터치아웃!', g: '삑! 손 "{def} 볼" 반대코트쪽 손\n드로인 핸딩 > 패스 > 찹시그널' }
         ],
         TRAIL: [
             { area: '1구역', act: '3점슛', f: '해킹', res: '노골', g: '삑! 주먹 "쓰리샷" 세손가락\n테이블 "{def} / {num}번 / {foul} / 쓰리샷"\n스위치 > 프리드로 (리드)' },
-            { area: '2구역', act: '드리블', f: '핸드체킹', res: '파울', g: '삑! 주먹 "{off} 볼"공격코트쪽 손\n테이블 "{def} / {num}번 / {foul} / {off} 볼"\n스위치 > 드로인' },
-            { area: '3구역', res: '{def} 아웃오브바운드!', g: '삑! 손 "{off} 볼" 공격코트쪽 손\n드로인 (휘슬) > 헨딩 > 5카운트\n패스 > 찹시그널' },
+            { area: '2구역', act: '돌파', f: '핸드체킹', res: '드로인', g: '삑! 주먹 "{off} 볼"공격코트쪽 손\n테이블 "{def} / {num}번 / {foul} / {off} 볼"\n스위치 > 드로인' },
+            { area: '3구역', res: '{def} OO번의 터치아웃!', g: '삑! 손 "{off} 볼" 공격코트쪽 손\n드로인 (휘슬) > 헨딩 > 5카운트\n패스 > 찹시그널' },
             { area: '6구역', act: '3점슛', f: '홀딩', res: '골인', g: '삑! 주먹 "쓰리카운트 원샷"\n테이블 "{def} / {num}번 / {foul} / 원샷"\n스위치 > 프리드로 (리드)' },
-            { area: '1구역', res: '{off} 아웃오브바운드!', g: '삑! 손 "{def} 볼" 반대코트쪽 손\n드로인 > 핸딩 > 패스 > 찹시그널' }
+            { area: '1구역', res: '{off} OO번의 터치아웃!', g: '삑! 손 "{def} 볼" 반대코트쪽 손\n드로인 > 핸딩 > 패스 > 찹시그널' }
         ]
     };
 
@@ -141,7 +141,7 @@
     function updateBadge(id, teamName, prefix) {
         const el = document.getElementById(id);
         const colors = colorMap[teamName];
-        el.innerText = `${teamName} ${prefix} `;
+        el.innerText = `${prefix} ${teamName}`;
         el.style.backgroundColor = colors.bg;
         el.style.color = colors.text;
     }
@@ -155,12 +155,13 @@
         const offT = teams[c1];
         const defT = teams[c2];
         const bench = (q.includes("1Q") || q.includes("2Q")) ? offT : defT;
-        const pNum = Math.floor(Math.random() * 99) + 1;
+        const pNum = Math.floor(Math.random() * 98) + 1;
+		const oNum = Math.floor(Math.random() * 98) + 1;
         const fType = fouls[Math.floor(Math.random() * fouls.length)];
 
         document.getElementById('info-pos').innerText = isL ? "리 드" : "트레일";
-		updateBadge('info-off', offT, '볼');
-        updateBadge('info-def', defT, '디');
+		updateBadge('info-off', offT, '🏀');
+        updateBadge('info-def', defT, '');
         document.getElementById('info-quarter').innerText = q;
         /*document.getElementById('info-court').innerText = `${bench} 코트`;*/
 
@@ -170,10 +171,10 @@
 
         let sitHtml = "";
         if (s.act) {
-            sitHtml = `${s.area} ${offT} ${s.act},<br>${defT} ${pNum}번 ${fType}, ${s.res}`;
+            sitHtml = `${s.area}에서 ${offT} OO번 ${s.act} 시,<br>${defT} ${pNum}번의 ${fType} > ${s.res}`;
         } else {
             const resClean = s.res.replace('{def}', defT).replace('{off}', offT);
-            sitHtml = `${s.area} 라인 경합!<br>${resClean}`;
+            sitHtml = `${s.area} 라인 부근 볼 경합,<br>${resClean}`;
         }
         document.getElementById('display-situation').innerHTML = sitHtml;
         currentGuide = s.g.replace(/{def}/g, defT).replace(/{off}/g, offT).replace(/{num}/g, pNum).replace(/{foul}/g, fType);
