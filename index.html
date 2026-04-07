@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>농구 2심제 연습기 v0.20</title>
+    <title>🏀 농구 2심제 연습기 v0.20</title>
     <style>
         /* 기본 스타일 및 레이아웃 */
         body { font-family: 'Malgun Gothic', sans-serif; margin: 0; background-color: #f2f2f2; display: flex; justify-content: center; padding: 20px; }
@@ -42,21 +42,21 @@
         /* [모바일 대응 미디어 쿼리] */
         @media (max-width: 600px) {
             body { padding: 5px; }
-            .header { padding: 10px 15px; }
+            .header { padding: 20px 15px; }
             .header h1 { font-size: 1.1rem; }
             .tab-btn { padding: 10px 5px; font-size: 0.85rem; }
-            .badge-row { padding: 10px; gap: 5px; }
+            .badge-row { padding: 15px; gap: 10px; }
             .badge { font-size: 0.75rem; padding: 4px 6px; }
             
             /* 가독성 핵심: 중앙 텍스트(1fr)를 위해 양옆 너비 축소 */
             .content-box { 
-                grid-template-columns: 60px 1fr 0px; 
-                gap: 12px; 
-                padding: 12px 10px; 
+                grid-template-columns: 55px 1fr 0px; 
+                gap: 10px; 
+                padding: 20px 10px; 
                 min-height: 150px;
             }
             .side-label { width: 40px; font-size: 0.8rem; height: 150px; border-radius: 4px; }
-            .text-display { font-size: 0.8rem; line-height: 1.8; }
+            .text-display { font-size: 0.85rem; line-height: 1.8; }
             .push-btn { font-size: 0.9rem; padding: 20px 2px; border-radius: 6px; box-shadow: 0 3px 0 #333; }
             .divider { margin: 0 20px; }
         }
@@ -66,7 +66,7 @@
 
 <div class="app-container">
     <div class="header">
-        <h1>농구 2심제 연습기</h1>
+        <h1>🏀농구 2심제 연습기</h1>
         <div class="version">v0.20 by Minuke</div>
     </div>
 
@@ -77,7 +77,6 @@
     </div>
 
     <div class="badge-row">
-			<div id="info-quarter" class="badge bg-gray">1Q</div>
         <div id="info-pos" class="badge bg-gray">리드 포지션</div>
 		<div id="info-off" class="badge dynamic-badge">공격팀: 로딩중</div>
 		<div id="info-def" class="badge dynamic-badge">수비팀: 로딩중</div>
@@ -114,24 +113,24 @@
         "퍼플": { bg: "#8e44ad", text: "#ffffff" },
     };
 
-    const quarters = ["1Q", "2Q", "3Q", "4Q", "연장"];
+    const quarters = ["1Q", "2Q", "3Q", "4Q", "연장Q"];
     const teams = Object.keys(colorMap);
     const fouls = ["해킹", "푸싱", "블락", "홀딩", "핸드체킹"];
 
     const scenarios = {
         LEAD: [
-            { area: '4구역', act: '슈팅', f: '해킹', res: '노골', g: '삑! 주먹 "투샷" 두손가락\n테이블 "{def} / {num}번 / {foul} / 투샷"\n스위치 > 프리드로 (트레일)' },
-            { area: '5구역', act: '슈팅', f: '푸싱', res: '골인', g: '삑! 주먹 "투카운트 원샷"\n테이블 "{def} / {num}번 / {foul} / 원샷"\n스위치 > 프리드로 (트레일)' },
-            { area: '4구역', act: '돌파', f: '블락', res: '드로인', g: '삑! 주먹 "{off} 볼" 공격코트쪽 손\n테이블 "{def} / {num}번 / {foul} / {off} 볼"\n스위치 > 드로인' },
-            { area: '4구역', res: '{def} OO번의 터치아웃!', g: '삑! 손 "{off} 볼" 공격코트쪽 손\n드로인 (휘슬) > 헨딩 > 5카운트\n패스 > 찹시그널' },
-            { area: '5구역', res: '{off} OO번의 터치아웃!', g: '삑! 손 "{def} 볼" 반대코트쪽 손\n드로인 핸딩 > 패스 > 찹시그널' }
+            { area: '4구역', act: '슈팅', f: '해킹', res: '노골!', g: '삑! 주먹 "({def} 파울, {off}) 2샷!"\n테이블 "{def} / {num}번 / {foul} / 2샷"\n스위치 > 프리드로 (트레일)' },
+            { area: '5구역', act: '슈팅', f: '푸싱', res: '골인!', g: '삑! 주먹 "({def} 파울, {off}) 2카운트1샷!"\n테이블 "{def} / {num}번 / {foul} / 1샷"\n스위치 > 프리드로 (트레일)' },
+            { area: '4구역', act: '돌파', f: '블락', res: '드로인', g: '삑! 주먹 "({def} 파울) {off} 볼" 공격 골대쪽 손\n테이블 "{def} / {num}번 / {foul} / {off} 볼"\n스위치 > 드로인' },
+            { area: '4구역', res: '{def} 터치 (또는 라인) 아웃!', g: '삑! 손 "({def} 아웃) {off} 볼" 공격 골대쪽 손\n드로인 (휘슬) > 헨딩 > 5초 카운트\n패스 찹시그널' },
+            { area: '5구역', res: '{off} 터치 (또는 라인) 아웃!', g: '삑! 손 "({off} 아웃) {def} 볼" 반대 골대쪽 손\n드로인 핸딩 > 패스 시 찹시그널' }
         ],
         TRAIL: [
-            { area: '1구역', act: '3점슛', f: '해킹', res: '노골', g: '삑! 주먹 "쓰리샷" 세손가락\n테이블 "{def} / {num}번 / {foul} / 쓰리샷"\n스위치 > 프리드로 (리드)' },
-            { area: '2구역', act: '돌파', f: '핸드체킹', res: '드로인', g: '삑! 주먹 "{off} 볼"공격코트쪽 손\n테이블 "{def} / {num}번 / {foul} / {off} 볼"\n스위치 > 드로인' },
-            { area: '3구역', res: '{def} OO번의 터치아웃!', g: '삑! 손 "{off} 볼" 공격코트쪽 손\n드로인 (휘슬) > 헨딩 > 5카운트\n패스 > 찹시그널' },
-            { area: '6구역', act: '3점슛', f: '홀딩', res: '골인', g: '삑! 주먹 "쓰리카운트 원샷"\n테이블 "{def} / {num}번 / {foul} / 원샷"\n스위치 > 프리드로 (리드)' },
-            { area: '1구역', res: '{off} OO번의 터치아웃!', g: '삑! 손 "{def} 볼" 반대코트쪽 손\n드로인 > 핸딩 > 패스 > 찹시그널' }
+            { area: '1구역', act: '3점슛', f: '해킹', res: '노골!', g: '삑! 주먹 "({def} 파울, {off}) 3샷"\n테이블 "{def} / {num}번 / {foul} / 3샷"\n스위치 > 프리드로 (리드)' },
+            { area: '2구역', act: '돌파', f: '핸드체킹', res: '드로인', g: '삑! 주먹 "({def} 파울) {off} 볼" 공격 골대쪽 손\n테이블 "{def} / {num}번 / {foul} / {off} 볼"\n스위치 > 드로인' },
+            { area: '3구역', res: '{def} 터치 (또는 라인) 아웃!', g: '삑! 손 "({def} 아웃) {off} 볼" 공격 골대쪽 손\n드로인 (휘슬) > 헨딩 > 5초 카운트\n패스 시 찹시그널' },
+            { area: '6구역', act: '3점슛', f: '홀딩', res: '골인!', g: '삑! 주먹 "({def} 파울, {off}) 3카운트1샷"\n테이블 "{def} / {num}번 / {foul} / 1샷"\n스위치 > 프리드로 (리드)' },
+            { area: '1구역', res: '{off} 터치 (또는 라인) 아웃!', g: '삑! 손 "({off} 아웃) {def} 볼" 반대 골대쪽 손\n드로인 > 핸딩 > 패스 시 찹시그널' }
         ]
     };
 
@@ -162,7 +161,7 @@
         document.getElementById('info-pos').innerText = isL ? "리 드" : "트레일";
 		updateBadge('info-off', offT, '🏀');
         updateBadge('info-def', defT, '');
-        document.getElementById('info-quarter').innerText = q;
+        /*document.getElementById('info-quarter').innerText = q;
         /*document.getElementById('info-court').innerText = `${bench} 코트`;*/
 
         const pool = isL ? scenarios.LEAD : scenarios.TRAIL;
@@ -171,10 +170,10 @@
 
         let sitHtml = "";
         if (s.act) {
-            sitHtml = `${s.area}에서 ${offT} OO번 ${s.act} 시,<br>${defT} ${pNum}번의 ${fType} > ${s.res}`;
+            sitHtml = `${q} ${bench} 벤치 쪽 코트 ${s.area}에서<br> ${offT} ${oNum}번 ${s.act} 시<br>${defT} ${pNum}번 ${fType} 파울 > ${s.res}`;
         } else {
             const resClean = s.res.replace('{def}', defT).replace('{off}', offT);
-            sitHtml = `${s.area} 라인 부근 볼 경합,<br>${resClean}`;
+            sitHtml = `${q} ${bench} 벤치 쪽 코트 ${s.area}에서<br> 라인 (사이드/엔드) 부근 경합<br>${resClean}`;
         }
         document.getElementById('display-situation').innerHTML = sitHtml;
         currentGuide = s.g.replace(/{def}/g, defT).replace(/{off}/g, offT).replace(/{num}/g, pNum).replace(/{foul}/g, fType);
