@@ -45,7 +45,7 @@
             .header { padding: 20px 15px; }
             .header h1 { font-size: 1.1rem; }
             .tab-btn { padding: 10px 5px; font-size: 0.85rem; }
-            .badge-row { padding: 13px; gap: 12px; }
+            .badge-row { padding: 30px; gap: 12px; }
             .badge { font-size: 0.8rem; padding: 5px 6px; }
             
             /* 가독성 핵심: 중앙 텍스트(1fr)를 위해 양옆 너비 축소 */
@@ -53,7 +53,7 @@
                 grid-template-columns: 45px 1fr 0px; 
                 gap: 8px; 
                 padding: 20px 8px; 
-                min-height: 150px;
+                min-height: 100px;
             }
             .side-label { width: 40px; font-size: 0.8rem; height: 150px; border-radius: 4px; }
             .text-display { font-size: 0.9rem; line-height: 1.6; }
@@ -104,12 +104,12 @@
 
 <script>
     const colorMap = {
-        /*"블랙": { bg: "#000000", text: "#ffffff" },
+        "블랙": { bg: "#000000", text: "#ffffff" },
         "화이트": { bg: "#ffffff", text: "#000000" },
-        "블루": { bg: "#2980b9", text: "#ffffff" },*/
+        /*"블루": { bg: "#2980b9", text: "#ffffff" },
         "레드": { bg: "#c0392b", text: "#ffffff" },
         "그린": { bg: "#27ae60", text: "#ffffff" },
-        /*"옐로": { bg: "#f1c40f", text: "#000000" },
+        "옐로": { bg: "#f1c40f", text: "#000000" },
         "퍼플": { bg: "#8e44ad", text: "#ffffff" },*/
     };
 
@@ -119,18 +119,18 @@
 
     const scenarios = {
         LEAD: [
-            { area: '4구역', act: '슈팅', f: '해킹', res: '슛 실패', g: '- 삑! 주먹 "{off} 2샷!"\n- 테이블 "{def} {num}번 {foul} / {off} 2샷"\n- 포지션 스위치 > 프리드로 (트레일)' },
-            { area: '5구역', act: '슈팅', f: '푸싱', res: '슛 성공', g: '- 삑! 주먹 "{off} 2카운트!"\n- 테이블 "{def} {num}번 {foul} / {off} 1샷"\n- 포지션 스위치 > 프리드로 (트레일)' },
-            { area: '4구역', act: '돌파', f: '블락', res: '노 슛', g: '- 삑! 주먹 "{off} 볼!" 공격 골대쪽 손\n- 테이블 "{def} {num}번 {foul} / {off} 볼"\n- 포지션 스위치 > 드로인' },
-            { area: '4구역', res: '{def} 아웃오브바운드', g: '- 삑! 손 "{off} 볼!" 공격 골대쪽 손\n- 드로인 (휘슬) > 헨딩 > 5초 카운트\n- 패스 시 찹시그널' },
-            { area: '5구역', res: '{off} 아웃오브바운드', g: '- 삑! 손 "{def} 볼!" 반대 골대쪽 손\n- 드로인 핸딩 > 패스 시 찹시그널' }
+            { area: '4구역', act: '슈팅', f: '히팅', res: '노골', g: '- 삑! (주먹) "2샷!"\n- 테이블 "{def} {num}번 {foul} / 2샷"\n- 포지션 스위치 > 프리드로 (트레일)' },
+            { area: '5구역', act: '슈팅', f: '블락', res: '골인', g: '- 삑! (주먹) "2카운트1샷!"\n- 테이블 "{def} {num}번 {foul} / 1샷"\n- 포지션 스위치 > 프리드로 (트레일)' },
+            { area: '4구역', act: '드리블', f: '푸싱', res: '일반', g: '- 삑! (주먹) "{off} 볼!" 공격 방향\n- 테이블 "{def} {num}번 {foul} / {off} 볼"\n- 포지션 스위치 > 드로인' },
+            { area: '4구역', res: '{def} 아웃오브바운드', g: '- 삑! (손) "{off} 볼!" 공격 방향\n- 드로인 (휘슬) > 헨딩 > 5초 카운트\n- 패스 시 찹시그널' },
+            { area: '5구역', res: '{off} 아웃오브바운드', g: '- 삑! (손) "{def} 볼!" 수비 방향\n- 드로인 핸딩 > 패스 시 찹시그널' }
         ],
         TRAIL: [
-            { area: '1구역', act: '3점슛', f: '히팅', res: '슛 실패', g: '- 삑! 주먹 "{off} 3샷!"\n- 테이블 "{def} {num}번 {foul} / {off}  3샷"\n- 프리드로 (트레일)' },
-            { area: '2구역', act: '돌파', f: '핸드체킹', res: '노 슛', g: '- 삑! 주먹 " {off} 볼!" 공격 골대쪽 손\n- 테이블 "{def} {num}번 {foul} / {off} 볼"\n- 드로인' },
-            { area: '3구역', res: '{def} 아웃오브바운드', g: '- 삑! 손 " {off} 볼!" 공격 골대쪽 손\n- 드로인 > 헨딩 > 5초 카운트\n- 패스 시 찹시그널' },
-            { area: '6구역', act: '3점슛', f: '홀딩', res: '슛 성공', g: '- 삑! 주먹 "{off} 3카운트!"\n- 테이블 "{def} {num}번 {foul} / {off} 1샷"\n- 프리드로 (트레일)' },
-            { area: '1구역', res: '{off} 아웃오브바운드', g: '- 삑! 손 " {def} 볼!" 반대 골대쪽 손\n- 드로인 > 핸딩 > 패스 시 찹시그널' }
+            { area: '1구역', act: '3점슛', f: '히팅', res: '노골', g: '- 삑! (주먹) "3샷!"\n- 테이블 "{def} {num}번 {foul} / 3샷"\n- 프리드로 (트레일)' },
+            { area: '2구역', act: '드리블', f: '푸싱', res: '일반', g: '- 삑! (주먹) "{off} 볼!" 공격 방향 \n- 테이블 "{def} {num}번 {foul} / {off} 볼"\n- 드로인' },
+            { area: '3구역', res: '{def} 아웃오브바운드', g: '- 삑! (손) "{off} 볼!" 공격 방향\n- 드로인 > 헨딩 > 5초 카운트\n- 패스 시 찹시그널' },
+            { area: '6구역', act: '3점슛', f: '히팅', res: '골인', g: '- 삑! 주먹 "3카운트1샷!"\n- 테이블 "{def} {num}번 {foul} / 1샷"\n- 프리드로 (트레일)' },
+            { area: '1구역', res: '{off} 아웃오브바운드', g: '- 삑! (손) "{def} 볼!" 수비 방향\n- 드로인 > 핸딩 > 패스 시 찹시그널' }
         ]
     };
 
