@@ -104,32 +104,32 @@
 
 <script>
     const colorMap = {
-        "블랙": { bg: "#000000", text: "#ffffff" },
+        /*"블랙": { bg: "#000000", text: "#ffffff" },
         "화이트": { bg: "#ffffff", text: "#000000" },
-        "블루": { bg: "#2980b9", text: "#ffffff" },
+        "블루": { bg: "#2980b9", text: "#ffffff" },*/
         "레드": { bg: "#c0392b", text: "#ffffff" },
         "그린": { bg: "#27ae60", text: "#ffffff" },
-        "옐로": { bg: "#f1c40f", text: "#000000" },
-        "퍼플": { bg: "#8e44ad", text: "#ffffff" },
+        /*"옐로": { bg: "#f1c40f", text: "#000000" },
+        "퍼플": { bg: "#8e44ad", text: "#ffffff" },*/
     };
 
     const quarters = ["1Q", "2Q", "3Q", "4Q", "연장Q"];
     const teams = Object.keys(colorMap);
-    const fouls = ["해킹", "푸싱", "블락", "홀딩", "핸드체킹"];
+    const fouls = ["히팅", "푸싱", "블락", "홀딩"];
 
     const scenarios = {
         LEAD: [
             { area: '4구역', act: '슈팅', f: '해킹', res: '슛 실패', g: '- 삑! 주먹 "{off} 2샷!"\n- 테이블 "{def} {num}번 {foul} / {off} 2샷"\n- 포지션 스위치 > 프리드로 (트레일)' },
-            { area: '5구역', act: '슈팅', f: '푸싱', res: '슛 성공', g: '- 삑! 주먹 "{off} 2카운트 1샷!"\n- 테이블 "{def} {num}번 {foul} / {off} 1샷"\n- 포지션 스위치 > 프리드로 (트레일)' },
+            { area: '5구역', act: '슈팅', f: '푸싱', res: '슛 성공', g: '- 삑! 주먹 "{off} 2카운트!"\n- 테이블 "{def} {num}번 {foul} / {off} 1샷"\n- 포지션 스위치 > 프리드로 (트레일)' },
             { area: '4구역', act: '돌파', f: '블락', res: '노 슛', g: '- 삑! 주먹 "{off} 볼!" 공격 골대쪽 손\n- 테이블 "{def} {num}번 {foul} / {off} 볼"\n- 포지션 스위치 > 드로인' },
             { area: '4구역', res: '{def} 아웃오브바운드', g: '- 삑! 손 "{off} 볼!" 공격 골대쪽 손\n- 드로인 (휘슬) > 헨딩 > 5초 카운트\n- 패스 시 찹시그널' },
             { area: '5구역', res: '{off} 아웃오브바운드', g: '- 삑! 손 "{def} 볼!" 반대 골대쪽 손\n- 드로인 핸딩 > 패스 시 찹시그널' }
         ],
         TRAIL: [
-            { area: '1구역', act: '3점슛', f: '해킹', res: '슛 실패', g: '- 삑! 주먹 "{off} 3샷!"\n- 테이블 "{def} {num}번 {foul} / {off}  3샷"\n- 프리드로 (트레일)' },
+            { area: '1구역', act: '3점슛', f: '히팅', res: '슛 실패', g: '- 삑! 주먹 "{off} 3샷!"\n- 테이블 "{def} {num}번 {foul} / {off}  3샷"\n- 프리드로 (트레일)' },
             { area: '2구역', act: '돌파', f: '핸드체킹', res: '노 슛', g: '- 삑! 주먹 " {off} 볼!" 공격 골대쪽 손\n- 테이블 "{def} {num}번 {foul} / {off} 볼"\n- 드로인' },
             { area: '3구역', res: '{def} 아웃오브바운드', g: '- 삑! 손 " {off} 볼!" 공격 골대쪽 손\n- 드로인 > 헨딩 > 5초 카운트\n- 패스 시 찹시그널' },
-            { area: '6구역', act: '3점슛', f: '홀딩', res: '슛 성공', g: '- 삑! 주먹 "{off} 3카운트 1샷!"\n- 테이블 "{def} {num}번 {foul} / {off} 1샷"\n- 프리드로 (트레일)' },
+            { area: '6구역', act: '3점슛', f: '홀딩', res: '슛 성공', g: '- 삑! 주먹 "{off} 3카운트!"\n- 테이블 "{def} {num}번 {foul} / {off} 1샷"\n- 프리드로 (트레일)' },
             { area: '1구역', res: '{off} 아웃오브바운드', g: '- 삑! 손 " {def} 볼!" 반대 골대쪽 손\n- 드로인 > 핸딩 > 패스 시 찹시그널' }
         ]
     };
