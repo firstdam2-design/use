@@ -106,11 +106,11 @@
     const colorMap = {
         "블랙": { bg: "#000000", text: "#ffffff" },
         "화이트": { bg: "#ffffff", text: "#000000" },
-        /*"블루": { bg: "#2980b9", text: "#ffffff" },
+        "블루": { bg: "#2980b9", text: "#ffffff" },
         "레드": { bg: "#c0392b", text: "#ffffff" },
         "그린": { bg: "#27ae60", text: "#ffffff" },
         "옐로": { bg: "#f1c40f", text: "#000000" },
-        "퍼플": { bg: "#8e44ad", text: "#ffffff" },*/
+        "퍼플": { bg: "#8e44ad", text: "#ffffff" },
     };
 
     const quarters = ["1Q", "2Q", "3Q", "4Q", "연장Q"];
@@ -119,18 +119,18 @@
 
     const scenarios = {
         LEAD: [
-            { area: '4구역', act: '슈팅', f: '히팅', res: '노골', g: '- 삑! (주먹) "2샷!"\n- 테이블 "{def} {num}번 {foul} / 2샷"\n- 포지션 스위치 > 프리드로 (트레일)' },
-            { area: '5구역', act: '슈팅', f: '블락', res: '골인', g: '- 삑! (주먹) "2카운트1샷!"\n- 테이블 "{def} {num}번 {foul} / 1샷"\n- 포지션 스위치 > 프리드로 (트레일)' },
-            { area: '4구역', act: '드리블', f: '푸싱', res: '일반', g: '- 삑! (주먹) "{off} 볼!" 공격 방향\n- 테이블 "{def} {num}번 {foul} / {off} 볼"\n- 포지션 스위치 > 드로인' },
-            { area: '4구역', res: '{def} 아웃오브바운드', g: '- 삑! (손) "{off} 볼!" 공격 방향\n- 드로인 (휘슬) > 헨딩 > 5초 카운트\n- 패스 시 찹시그널' },
-            { area: '5구역', res: '{off} 아웃오브바운드', g: '- 삑! (손) "{def} 볼!" 수비 방향\n- 드로인 핸딩 > 패스 시 찹시그널' }
+            { area: '4구역', act: '2점슛', f: '히팅', res: '으로 노골', g: '- 삑!주먹 "2샷!"\n- 리포팅: "{def} {num}번 {foul}, 2샷"' },
+            { area: '5구역', act: '2점슛', f: '블락', res: '에도 골인', g: '- 삑!주먹 "2카운트 1샷!"\n- 리포팅: "{def} {num}번 {foul}, 1샷"' },
+            { area: '4구역', act: '드리블', f: '푸싱', res: '파울', g: '- 삑!주먹 "{off}볼!" 공격 방향\n- 리포팅: "{def} {num}번 {foul}, {off}볼"' },
+            { area: '4구역', res: '{def}팀 아웃오브바운드', g: '- 삑!손 "{off}볼!" 공격 방향\n- 드로인 (휘슬) > 헨딩 > 5초 카운트' },
+            { area: '5구역', res: '{off}팀 아웃오브바운드', g: '- 삑!손 "{def}볼!" 반대 방향\n- 드로인 핸딩 > 패스 시 찹시그널' }
         ],
         TRAIL: [
-            { area: '1구역', act: '3점슛', f: '히팅', res: '노골', g: '- 삑! (주먹) "3샷!"\n- 테이블 "{def} {num}번 {foul} / 3샷"\n- 프리드로 (트레일)' },
-            { area: '2구역', act: '드리블', f: '푸싱', res: '일반', g: '- 삑! (주먹) "{off} 볼!" 공격 방향 \n- 테이블 "{def} {num}번 {foul} / {off} 볼"\n- 드로인' },
-            { area: '3구역', res: '{def} 아웃오브바운드', g: '- 삑! (손) "{off} 볼!" 공격 방향\n- 드로인 > 헨딩 > 5초 카운트\n- 패스 시 찹시그널' },
-            { area: '6구역', act: '3점슛', f: '히팅', res: '골인', g: '- 삑! 주먹 "3카운트1샷!"\n- 테이블 "{def} {num}번 {foul} / 1샷"\n- 프리드로 (트레일)' },
-            { area: '1구역', res: '{off} 아웃오브바운드', g: '- 삑! (손) "{def} 볼!" 수비 방향\n- 드로인 > 핸딩 > 패스 시 찹시그널' }
+            { area: '1구역', act: '3점슛', f: '히팅', res: '으로 노골', g: '- 삑!주먹 "3샷!"\n- 리포팅: "{def} {num}번 {foul} / 3샷"' },
+            { area: '2구역', act: '드리블', f: '푸싱', res: '파울', g: '- 삑!주먹 "{off}볼!" 공격 방향 \n- 리포팅: "{def} {num}번 {foul}, {off}볼"' },
+            { area: '3구역', res: '{def}팀 아웃오브바운드', g: '- 삑!손 "{off}볼!" 공격 방향\n- 드로인 > 헨딩 > 5초 카운트' },
+            { area: '6구역', act: '3점슛', f: '히팅', res: '에도 골인', g: '- 삑!주먹 "3카운트 1샷!"\n- 리포팅: "{def} {num}번 {foul}, 1샷"' },
+            { area: '1구역', res: '{off}팀 아웃오브바운드', g: '- 삑!손 "{def}볼!" 반대 방향\n- 드로인 핸딩 > 패스 시 찹시그널'}
         ]
     };
 
@@ -170,10 +170,10 @@
 
         let sitHtml = "";
         if (s.act) {
-            sitHtml = `- 코트 ${s.area}에서 ${offT} ${s.act} 시 <br>- ${defT} ${pNum}번 ${fType} 파울 (${s.res})`;
+            sitHtml = `- ${s.area} ${offT}볼, ${s.act} 중 <br>- ${defT} ${pNum}번의 ${fType}${s.res}`;
         } else {
             const resClean = s.res.replace('{def}', defT).replace('{off}', offT);
-            sitHtml = `- 코트 ${s.area} 라인 부근 경합<br>- ${resClean}`;
+            sitHtml = `- ${s.area} ${offT}볼, 라인경합 중<br>- ${resClean}`;
         }
         document.getElementById('display-situation').innerHTML = sitHtml;
         currentGuide = s.g.replace(/{def}/g, defT).replace(/{off}/g, offT).replace(/{num}/g, pNum).replace(/{foul}/g, fType);
