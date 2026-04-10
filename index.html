@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🏀 농구 2심 심판 연습 v0.20</title>
+    <title>🏀농구 심판 기초 콜 v0.20</title>
     <style>
         /* 기본 스타일 및 레이아웃 */
         body { font-family: 'Malgun Gothic', sans-serif; margin: 0; background-color: #f2f2f2; display: flex; justify-content: center; padding: 20px; }
@@ -66,7 +66,7 @@
 
 <div class="app-container">
     <div class="header">
-        <h1>🏀농구 2심 심판 연습</h1>
+        <h1>🏀농구 심판 기초 콜</h1>
         <div class="version">v0.20 by Minuke</div>
     </div>
 
@@ -119,18 +119,18 @@
 
     const scenarios = {
         LEAD: [
-            { area: '4구역', act: '2점 슛', f: '히팅', res: '(노골)', g: '삑! 주먹 "2샷!" 콜\n"{def} {num}번 {foul}, 2샷" 리포트' },
-            { area: '5구역', act: '2점 슛', f: '블락', res: '(골인)', g: '삑! 주먹 "2카운트 1샷!" 콜\n"{def} {num}번 {foul}, 1샷" 리포팅' },
-            { area: '4구역', act: '드리블', f: '푸싱', res: '(노슛)', g: '삑! 주먹 "{off} 볼" 공격 방향 손\n"{def} {num}번 {foul}, {off} 볼" 리포트' },
-            { area: '4구역', res: '{def}의 아웃오브바운드 발생', g: '삑! 손 "{off} 볼" 공격 방향 손\n드로인 진행' },
-            { area: '5구역', res: '{off}의 아웃오브바운드 발생', g: '삑! 손 "{def} 볼" 반대 방향 손\n드로인 진행' }
+            { area: '4구역', act: '2점 슛', f: '히팅', res: '노골', g: '삑! 주먹 "2샷!" / "{def} {num}번 {foul}, 2샷"' },
+            { area: '5구역', act: '2점 슛', f: '블락', res: '골인', g: '삑! 주먹 "2카운트 1샷!" / "{def} {num}번 {foul}, 1샷"' },
+            { area: '4구역', act: '돌파', f: '푸싱', res: '노슛', g: '삑! 주먹 "{off} 볼" / "{def} {num}번 {foul}, {off} 볼"' },
+            { area: '4구역', res: '{def} 아웃', g: '삑! 손 "{off} 볼" 공격방향' },
+            { area: '5구역', res: '{off} 아웃', g: '삑! 손 "{def} 볼" 반대방향' }
         ],
         TRAIL: [
-            { area: '1구역', act: '3점 슛', f: '히팅', res: '(노골)', g: '삑! 주먹 "3샷!" 콜\n"{def} {num}번 {foul} / 3샷" 리포트' },
-            { area: '2구역', act: '드리블', f: '푸싱', res: '(노슛)', g: '삑! 주먹 "{off} 볼" 공격 방향 손\n"{def} {num}번 {foul}, {off} 볼" 리포트' },
-            { area: '3구역', res: '{def}의 아웃오브바운드 발생', g: '삑! 손 "{off} 볼" 공격 방향 손\드로인 진행' },
-            { area: '6구역', act: '3점 슛', f: '히팅', res: '(골인)', g: '삑! 주먹 "3카운트 1샷!" 콜\n"{def} {num}번 {foul}, 1샷" 리포트' },
-            { area: '1구역', res: '{off}의 아웃오브바운드 발생', g: '삑! 손 "{def} 볼" 반대 방향 손\n드로인 진행'}
+            { area: '1구역', act: '3점 슛', f: '히팅', res: '노골', g: '삑! 주먹 "3샷!", "{def} {num}번 {foul}, 3샷"' },
+            { area: '2구역', act: '돌파', f: '푸싱', res: '노슛', g: '삑! 주먹 "{off} 볼" / "{def} {num}번 {foul}, {off} 볼"' },
+            { area: '3구역', res: '{def} 아웃', g: '삑! 손 "{off} 볼" 공격방향'},
+            { area: '6구역', act: '3점 슛', f: '히팅', res: '골인', g: '삑! 주먹 "3카운트 1샷!"/"{def} {num}번 {foul}, 1샷"' },
+            { area: '1구역', res: '{off} 아웃', g: '삑! 손 "{def} 볼" 반대방향'}
         ]
     };
 
@@ -170,10 +170,10 @@
 
         let sitHtml = "";
         if (s.act) {
-            sitHtml = `${s.area} ${offT} 볼, ${s.act} 중 <br>${defT} ${pNum}번, ${fType}  파울 ${s.res}`;
+            sitHtml = `${offT} ${s.act}, ${defT} ${pNum}번 ${fType}, ${s.res}`;
         } else {
             const resClean = s.res.replace('{def}', defT).replace('{off}', offT);
-            sitHtml = `${s.area} ${offT} 볼, ${defT} 수비<br>${resClean}`;
+            sitHtml = `${offT} 볼, ${resClean}`;
         }
         document.getElementById('display-situation').innerHTML = sitHtml;
         currentGuide = s.g.replace(/{def}/g, defT).replace(/{off}/g, offT).replace(/{num}/g, pNum).replace(/{foul}/g, fType);
