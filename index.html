@@ -177,7 +177,7 @@
             sitHtml = `${offT} ${s.act}<br> ${defT} 파울 (${pNum}번, ${fType})`;
         } else {
             const resClean = s.res.replace('{def}', defT).replace('{off}', offT);
-            sitHtml = `${offT} 볼,<br> ${resClean}`;
+            sitHtml = `${offT} 볼, ${resClean}`;
         }
         document.getElementById('display-situation').innerHTML = sitHtml;
         currentGuide = s.g.replace(/{def}/g, defT).replace(/{off}/g, offT).replace(/{num}/g, pNum).replace(/{foul}/g, fType);
