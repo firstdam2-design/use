@@ -126,81 +126,81 @@
 
 // 1. 데이터 정의 (누락되었던 colorMap 추가)
 const colorMap = {
-    /*"블랙": { bg: "#000000", text: "#ffffff" },
-    "화이트": { bg: "#ffffff", text: "#000000" },*/
+    "블랙": { bg: "#000000", text: "#ffffff" },
+    "화이트": { bg: "#ffffff", text: "#000000" },
     "레드": { bg: "#ff0000", text: "#ffffff" },
-    /*"블루": { bg: "#0000ff", text: "#ffffff" },*/
+    "블루": { bg: "#0000ff", text: "#ffffff" },
     "옐로우": { bg: "#ffff00", text: "#000000" },
-    /*"그린": { bg: "#008000", text: "#ffffff" }*/
+    "그린": { bg: "#008000", text: "#ffffff" }
 };
 // 1. 데이터 정의
 const quizData = {
     LEAD: {
         categories: [
             { name: "빈도:70%", weight: 70, items: [
-                { q: "5구역 페인트존 <br>{off} 레이업슛, {def} {num}번 블락(노골)", a: "삑! 주먹 '투샷' <br>'{def} {num}번 블락, 투샷'" },
-                { q: "4구역 코너 <br>{off} 3점슛, {def} {num}번 히팅(노골)", a: "삑! 주먹 '쓰리샷' <br>'{def} {num}번 히팅, 쓰리샷'" },
-                { q: "5구역 페인트존 <br>{off} 골밑슛, {def} {num}번 푸싱(골인)", a: "삑! 주먹 '투카운트' <br>'투카운트, {def} {num}번 푸싱, 원샷'" },
-                { q: "4구역 숏코너 <br>{off} 미들슛, {def} {num}번 히팅(골인)", a: "삑! 주먹 '투카운트' <br>'투카운트, {def} {num}번 히팅, 원샷'" },
-                { q: "4구역 사이드라인 부근 <br>{off} 드리블, {def} {num}번 히팅", a: "삑! 주먹 '{off}' 우측 방향 <br>'{def} {num}번 히팅, {off}, 사이드'" },
-                { q: "5구역 베이스라인 부근 <br>{off} 포스트업, {def} {num}번 홀딩", a: "삑! 주먹 '{off}' 우측 방향 <br>'{def} {num}번 홀딩, {off}, 베이스'" },
-                { q: "4구역 사이드라인 부근 <br>{off} 드리블, {def} 터치 아웃", a: "삑! 손 '{off}' 우측 방향 <br>사이드라인 드로인" },
-                { q: "5구역 베이스라인 부근 <br>{off} 드리블, {def} 터치 아웃", a: "삑! 손 '{off}' 우측 방향 <br>베이스라인 드로인" },
-                { q: "4구역 사이드라인 부근 <br>{off} 드리블, 라인 아웃 ", a: "삑! 손 '{def}' 좌측 방향 <br>사이드라인 드로인" },
-                { q: "5구역 베이스라인 부근 <br>{off} 드리블, 라인 아웃 ", a: "삑! 손 '{def}' 좌측 방향 <br>베이스라인 드로인" },
-				{ q: "3구역 사이드라인 부근 <br>{off} 드리블, 라인 아웃", a: "삑! 손 '{def}' 좌측 방향 <br>사이드라인 드로인" },
-				{ q: "3구역 사이드라인 부근 <br>{off} 드리블, {def} 터치 아웃", a: "삑! 손 '{off}' 우측 방향 <br>사이드라인 드로인" },
+                { q: "5구역 페인트존 <br>{off} 레이업슛, {def} {num}번 블락(노골)", a: "삑!주먹 '투샷' 두손가락 <br>'{def} {num}번 블락, 투샷'" },
+                { q: "4구역 코너 <br>{off} 3점슛, {def} {num}번 히팅(노골)", a: "삑!주먹 '쓰리샷' 세손가락 <br>'{def} {num}번 히팅, 쓰리샷'" },
+                { q: "5구역 페인트존 <br>{off} 골밑슛, {def} {num}번 푸싱(골인)", a: "삑!주먹 '투카운트' 두손가락내림 <br>'{def} {num}번 푸싱, 원샷'" },
+                { q: "4구역 숏코너 <br>{off} 미들슛, {def} {num}번 히팅(골인)", a: "삑!주먹 '투카운트' 두손가락내림 <br>'{def} {num}번 히팅, 원샷'" },
+                { q: "4구역 사이드라인 부근 <br>{off} 드리블, {def} {num}번 히팅", a: "삑!주먹 '{off}' 우측 방향 <br>'{def} {num}번 히팅, {off}' 사이드" },
+                { q: "5구역 베이스라인 부근 <br>{off} 포스트업, {def} {num}번 홀딩", a: "삑!주먹 '{off}' 우측 방향 <br>'{def} {num}번 홀딩, {off}' 베이스" },
+                { q: "4구역 사이드라인 부근 <br>{off} 드리블, {def} 터치아웃", a: "삑!손 '{off}' 우측방향<br>사이드" },
+                { q: "5구역 베이스라인 부근 <br>{off} 드리블, {def} 터치아웃", a: "삑!손 '{off}' 우측방향<br>베이스" },
+                { q: "4구역 사이드라인 부근 <br>{off} 드리블, 라인아웃 ", a: "삑!손 '{def}' 좌측방향<br>사이드" },
+                { q: "5구역 베이스라인 부근 <br>{off} 드리블, 라인아웃 ", a: "삑!손 '{def}' 좌측방향<br>베이스" },
+				{ q: "3구역 사이드라인 부근 <br>{off} 드리블, 라인아웃", a: "삑!손 '{def}' 좌측방향<br>사이드" },
+				{ q: "3구역 사이드라인 부근 <br>{off} 드리블, {def} 터치아웃", a: "삑!손 '{off}' 우측방향<br>사이드" },
 			]},
             { name: "빈도:30%", weight: 30, items: [
-                { q: "5구역 노차지존 밖 <br>{off} {num}번 레이업, 차징", a: "삑! 주먹 '차징' 좌측 방향 <br>{off} {num}번 푸싱, {def}, 베이스" },
-                { q: "5구역 페인트존 <br>{off} {num}번 리바운드, 차징", a: "삑! 주먹 '차징' 좌측 방향 <br>{off} {num}번 히팅, {def}, 베이스" },
-                { q: "5구역 페인트존 <br>{off} {num}번 4초 머무름", a: "삑! 손 '3초' 세손가락 바닥<br>'{def}' 좌측 방향, 베이스'" },
-                { q: "4구역 베이스라인 <br>{off} 5초 이상 드로인 실패", a: "삑! 손 '5초' 다섯손가락<br>'{def}' 좌측 방향, 베이스'" },
-                { q: "5구역 베이스라인 <br>{off} 드로인 중 라인밟을 경우", a: "삑! 손 '드로인 바이얼레이션'<br>'{def}' 좌측 방향, 베이스" },
-                { q: "4구역 베이스라인 <br>{off} 드로인 중 1m 이상 옆이동", a: "삑! 손 '드로인 바이얼레이션'<br>'{def}' 좌측 방향, 베이스" },
-				{ q: "5구역 베이스라인 <br>4Q(연장)2분 미만 {def}의 드로인 방해", a: "삑!주먹T손<br>'{def} {num}번' 테크니컬, 원샷" },
-                { q: "5구역 페인트존 <br>{off} {num}번 플로터슛 중 플라핑 (2차)", a: "삑! 손 '페이크' 손등 내리기<br>'{off} {num}번, 테크니컬, 원샷'" },
-                { q: "4구역 <br>{off} {num}번 차징 후 거친 항의", a: "삑! 주먹T손 '테크니컬'<br>'{off} {num}번, 테크니컬, 원샷'" },
-                { q: "5구역 페인트존 <br> 리바운드 경합 중 {off}, {def} 서로 히팅", a: "삑! 양주먹山 '더블 파울'<br>'헬드볼' 공격권 방향, 베이스" },
-				{ q: "4구역으로 <br>{off} 패스, {def} 고의 킥볼", a: "삑! 손 '킥바이얼레이션'<br>'{off}' 우측 방향, 사이드'" },				
-				{ q: "프리드로 라인에서 <br>{off} 슈터 라인 아웃, 5초 경과, 에어볼", a: "삑! 손 '슛 바이얼레이션'<br>'{def}' 좌측 방향, 사이드" },
-				{ q: "4구역에서 볼 경합, <br> {def} {num}번 고의 주먹질", a: "삑! 만세주먹 '디파울'<br>'{def} {num}번 디파울 퇴장', 점프볼" },
-				{ q: "테이블 보는 센터 써클에서 <br>주심, 공격 방향 고지 후 점프볼 준비", a: "삑! 볼 리프팅, <br>휘슬 뱉고 {off} 트레일포지션으로" },
-				{ q: "테이블 등지는 센터 써클 보며 <br>부심, 썸즈업과 손들기 점프볼 준비", a: "삑! 공 탭되면 찹시그널, <br>{off} 공격 골대 리드포지션으로" },
-				{ q: "테이블 보는 센터 라인 사이드에서 <br> 주심, 쿼터 시작 {off} 드로인", a: "삑! 공 핸딩, <br>{off} 공격 골대 트레일 심판 위치로" },
+                { q: "5구역 노차지존 밖 <br>{off} {num}번 레이업, 차징", a: "삑!주먹 '오펜스' 주먹 좌측방향 <br>{off} {num}번 차징, {def}' 베이스" },
+                { q: "5구역 페인트존 <br>{off} {num}번 리바운드, 푸싱", a: "삑!주먹 '오펜스' 주먹 좌측방향 <br>{off} {num}번 푸싱, {def}' 베이스" },
+                { q: "5구역 페인트존 <br>{off} {num}번 4초 머무름", a: "삑!손 '3초' 세손가락<br>'{def} 좌측방향' 베이스" },
+                { q: "4구역 베이스라인 <br>{off} 5초 이상 드로인 실패", a: "삑!손 '5초' 다섯손가락<br>'{def} 좌측방향' 베이스" },
+                { q: "5구역 베이스라인 <br>{off} 드로인 중 라인밟을 경우", a: "삑!손 '드로인 바이얼레이션'<br>'{def} 좌측방향, 베이스" },
+                { q: "4구역 베이스라인 <br>{off} 드로인 중 1m 이상 옆이동", a: "삑!손 '드로인 바이얼레이션'<br>'{def} 좌측방향, 베이스" },
+				{ q: "5구역 베이스라인 <br>4Q(연장)2분 미만 {def}의 드로인 방해", a: "삑!주먹 T손<br>'{def} {num}번 테크니컬, 원샷'" },
+                { q: "5구역 페인트존 <br>{off} {num}번 플로터슛 중 플라핑 (2차)", a: "삑!손 '페이크' 손등내리기<br>'{off} {num}번, 테크니컬, 원샷'" },
+                { q: "4구역에서 <br>{off} {num}번 차징 후 거친 항의", a: "삑!주먹T손 '테크니컬'<br>'{off} {num}번, 테크니컬, 원샷'" },
+                { q: "5구역 페인트존 <br> 리바운드 경합 중 {off}, {def} 서로 히팅", a: "삑!양주먹 '더블파울'<br>'헬드볼' 공격권 방향' 베이스" },
+				{ q: "4구역으로 <br>{off} 패스, {def} 고의 킥볼", a: "삑!손 '킥바이얼레이션'<br>'{off} 우측방향' 사이드" },				
+				{ q: "프리드로 라인에서 <br>{off} 슈터 라인밟기/5초 경과/에어볼", a: "삑!손 '슛바이얼레이션'<br>'{def}' 좌측방향' 사이드" },
+				{ q: "4구역에서 볼 경합, <br> {def} {num}번 고의 주먹질", a: "삑!만세주먹 '디파울'<br>'{def} {num}번 디파울 퇴장', 점프볼" },
+				{ q: "테이블 보는 센터써클에서 <br>주심, 공격 방향 고지 후 점프볼 준비", a: "삑!볼리프팅, <br>휘슬 뱉고 {off} T심판 위치로" },
+				{ q: "테이블 등지는 센터써클 보며 <br>부심, 썸즈업과 손들기 점프볼 준비", a: "삑!볼탭 시 찹시그널, <br>{off} 프론트코트 L심판위치로" },
+				{ q: "테이블 보는 센터라인 사이드에서 <br> 주심, 쿼터 시작 {off} 드로인", a: "삑!볼핸딩, <br>{off} 프론트코트 T심판위치로" },
            ]}
         ]
     },
     TRAIL: {
         categories: [
             { name: "빈도:70%", weight: 70, items: [
-                { q: "1구역 왼쪽윙 <br>{off} 3점슛, {def} {num}번 히팅(노골)", a: "삑! 주먹 '쓰리샷' <br>'{def} {num}번 히팅, 쓰리샷'" },
-                { q: "2구역 탑 <br>{off} 3점슛, {def} {num}번 블락(골인)", a: "삑! 주먹 '쓰리카운트' <br>'쓰리카운트, {def} {num}번 블락, 원샷'" },
-                { q: "3구역 엘보우 바깥 <br>{off} 미들슛, {def} {num}번 푸싱(골인)", a: "삑! 주먹 '투카운트' <br>'투카운트, {def} {num}번 푸싱,  원샷'" },
-                { q: "6구역 숏코너 <br>{off} 미들슛, {def} {num}번 히팅(노골)", a: "삑! 주먹 '투샷' <br>'{def} {num}번 히팅, 투샷'" },
-                { q: "1구역 사이드라인 부근 <br>{off} 드리블, {def} {num}번 헨드체킹", a: "삑! 주먹 '{off}' 좌측 방향 <br>'{def} {num}번 핸드체킹, {off}, 사이드'" },
-                { q: "2구역 네일 오른쪽 부근 <br>{off} 드리블, {def} {num}번 후킹", a: "삑! 주먹 '{off}' 좌측 방향 <br>'{def} {num}번 후킹, {off}, 사이드'" },
-                { q: "6구역 사이드라인 부근 <br>{off} 드리블, 라인 아웃", a: "삑! 손 '{def}' 우측 방향 <br>사이드라인 드로인" },
+                { q: "1구역 왼쪽윙 <br>{off} 3점슛, {def} {num}번 히팅(노골)", a: "삑!주먹 '쓰리샷' 세손가락 <br>'{def} {num}번 히팅, 쓰리샷'" },
+                { q: "2구역 탑에서 <br>{off} 3점슛, {def} {num}번 블락(골인)", a: "삑!주먹 '쓰리카운트' 양손세손가락<br>'{def} {num}번 블락, 원샷'" },
+                { q: "3구역 엘보우 바깥 <br>{off} 미들슛, {def} {num}번 푸싱(골인)", a: "삑!주먹 '투카운트' 두손가락내림 <br>'{def} {num}번 푸싱, 원샷'" },
+                { q: "6구역 숏코너 <br>{off} 미들슛, {def} {num}번 히팅(노골)", a: "삑!주먹 '투샷' 두손가락 <br>'{def} {num}번 히팅, 투샷'" },
+                { q: "1구역 사이드라인 부근 <br>{off} 드리블, {def} {num}번 헨드체킹", a: "삑!주먹 '{off}' 좌측방향 <br>'{def} {num}번 핸드체킹, {off}' 사이드" },
+                { q: "2구역 네일 오른쪽 부근 <br>{off} 드리블, {def} {num}번 후킹", a: "삑!주먹 '{off}' 좌측방향 <br>'{def} {num}번 후킹, {off}' 사이드" },
+                { q: "6구역 사이드라인 부근 <br>{off} 드리블, 라인아웃", a: "삑!손 '{def}' 우측방향 <br>사이드" },
 			]},
             { name: "빈도:30%", weight: 30, items: [
-                { q: "3구역 오른쪽 윙 부근 <br>{off} {num}번 스크린 파울", a: "삑! 주먹 '차징' 우측 방향 <br>{off} {num}번 푸싱, {def}, 사이드" },
-                { q: "2구역 센터 라인 부근 <br>{off} 백코트 라인 밟음", a: "삑! 손 '백코트' 오락가락<br>'{def}' 우측 방향, 사이드'" },
-                { q: "1구역 센터 라인 부근 <br>{off} 8초 경과", a: "삑! 손 '8초' 열덟손가락<br>'{def}' 우측 방향, 사이드'" },
-                { q: "6구역 코너 부근 <br>{off} 슈팅 전 24초 부저", a: "삑! 손 '샷클락'<br>'{def}' 우측 방향, 베이스'" },
-                { q: "2구역 탑 부근 <br>{off} 드라이브인 중 축발 끌림", a: "삑! 손 '트레블링'<br>'{def}' 우측 방향, 사이드'" },
-                { q: "1구역 왼쪽 윙 부근 <br>{off} 선수 볼 캐치와 드리블 반복", a: "삑! 손 '더블드리블' 양손 상하<br>'{def}' 우측 방향, 사이드" },
-                { q: "3구역 센터 라인 부근 <br>{off} 속공 시 {def} {num} 옷잡기", a: "삑! 주먹, 심판 상의 후 'U파울'<br>'{def} {num}번, U파울, 투샷'" },
-                { q: "5구역 페인트존에서 <br> 리바운드 경합 중 서로 히팅", a: "삑! 양주먹山 '더블파울'<br>'{off}' 우측 방향, 베이스'" },
-				{ q: "4구역으로 <br>{off} 바운드 패스 중 {def} 킥볼", a: "삑! 손 '킥바이얼레이션'<br>'{off}' 좌측 방향, 사이드'" },
-				{ q: "프리드로 시 <br>슛 릴리즈 전 {off} 진입(노골)", a: "삑! 손 <br>'{def}, 우측 방향, 베이스'" },
-				{ q: "프리드로 시 <br>슛 림터치 전 {def} 진입(노골)", a: "삑! 손 <br>'{off} 원샷 어게인'" },
-				{ q: "5구역 골대 근처 {off} 슈팅 시 <br>볼이 림보다 높을 때, {def} 낙하볼/백보드볼 터치", a: "삑! 손 '골텐딩' 손가락 빙글<br>'{off} 득점 인정'" },
-				{ q: "5구역 {def} 골대 근처 <br>볼이 림보다 높을 때 {off} 낙하볼/백보드볼 터치", a: "삑! 손 '골텐딩' 손가락 빙글<br>'득점 취소 {def}, 베이스'" },
-				{ q: "5구역 골대 근처 {off} 슈팅 후 <br>볼 림터치 시 {def} 바스켓, 백보드 터치", a: "삑! 손 '인터피어런스' 손가락 빙글<br>'{off} 득점 인정'" },
-				{ q: "5구역 {def} 골대 근처 <br>슛 림터치 시 {off} 바스켓, 백보드 터치", a: "삑! 손 '인터피어런스' 손가락 빙글<br>'득점 취소 {def}, 베이스'" },
-				{ q: "쿼터 종료 직전 <br>마지막 24초 공격권", a: "손가락 하나 들기<br>쿼터 종료 시 삑! 스탑 시그널" },
-				{ q: "볼 데드나 실점 시 테이블에 코치 요청 <br>타임아웃 부저 울림 ", a: "삑! <br>'타임아웃' 대기 포지션으로" },
-				{ q: "볼 데드나 실점 시 테이블에 선수 요청 <br>선수교체 부저 올림 ", a: "삑! 팔X자 시그널 후<br>베컨 시그널" },
+                { q: "3구역 오른쪽 윙 부근 <br>{off} {num}번 일리걸스크린", a: "삑!주먹 '오펜스' 주먹 우측방향 <br>{off} {num}번 블락, {def}' 사이드" },
+                { q: "2구역 센터 라인 부근 <br>{off} 백코트 라인 밟음", a: "삑!손 '백코트' 오락가락<br>'{def}' 우측방향' 사이드" },
+                { q: "1구역 센터 라인 부근 <br>{off} 8초 경과", a: "삑!손 '8초' 여덟손가락<br>'{def}' 우측방향' 사이드" },
+                { q: "6구역 코너 부근 <br>{off} 슈팅 전 24초 부저", a: "삑!손 '샷클락'<br>'{def}' 우측방향' 베이스" },
+                { q: "2구역 탑 부근 <br>{off} 드라이브인 중 축발 끌림", a: "삑!손 '트레블링'<br>'{def}' 우측방향' 사이드" },
+                { q: "1구역 왼쪽 윙 부근 <br>{off} 선수 볼 캐치와 드리블 반복", a: "삑!손 '더블드리블' 양손상하<br>'{def}' 우측방향' 사이드" },
+                { q: "3구역 센터 라인 부근 <br>{off} 속공 시 {def} {num} 옷잡기", a: "삑!주먹, 심판 상의 후 'U파울'<br>'{def} {num}번, U파울, 투샷'" },
+                { q: "5구역 페인트존에서 <br> 리바운드 경합 중 서로 히팅", a: "삑!양주먹 '더블파울'<br>'{off}' 우측방향' 베이스" },
+				{ q: "4구역으로 <br>{off} 바운드 패스 중 {def} 킥볼", a: "삑!손 '킥바이얼레이션'<br>'{off}' 좌측방향' 사이드" },
+				{ q: "프리드로 시 <br>슛 릴리즈 전 {off} 진입(노골)", a: "삑!손 <br>'{def}, 우측 방향' 베이스" },
+				{ q: "프리드로 시 <br>슛 림터치 전 {def} 진입(노골)", a: "삑!손 <br>'{off}, 원샷 어게인'" },
+				{ q: "5구역 골대 근처 {off} 슈팅 시 <br>볼이 림보다 높을 때 {def}, 낙하볼/백보드볼 터치", a: "삑!손 '골텐딩' 손가락빙글<br>'{off} 득점인정'" },
+				{ q: "5구역 골대 근처 {off} 슈팅 시 <br>볼이 림보다 높을 때 {off}, 낙하볼/백보드볼 터치", a: "삑!손 '골텐딩' 손가락빙글<br>'득점 취소 {def}' 베이스" },
+				{ q: "5구역 골대 근처 {off} 슈팅 후 <br>볼 림터치 시 {def} 바스켓/백보드 터치", a: "삑!손 '인터피어런스' 손가락빙글<br>'{off} 득점인정'" },
+				{ q: "5구역 골대 근처 {off} 슈팅 후 <br>볼 림터치 시 {off} 바스켓/백보드 터치", a: "삑!손 '인터피어런스' 손가락빙글<br>'득점취소 {def}' 베이스" },
+				{ q: "쿼터 종료 직전 <br>마지막 24초 공격권", a: "한손가락 들기<br>쿼터 종료 시 삑! 스탑시그널" },
+				{ q: "볼 데드나 실점 시 테이블에 코치 요청 <br>타임아웃 부저 울림 ", a: "삑!<br>'타임아웃' 대기 위치로" },
+				{ q: "볼 데드나 실점 시 테이블에 선수 요청 <br>선수교체 부저 올림 ", a: "삑!양팔X자 후<br>베컨 시그널" },
            ]}
         ]
     },
@@ -418,24 +418,32 @@ QUIZ: {
 }
 };
 
-/* --- 자바스크립트 수정본 --- */
+/* --- 자바스크립트 수정본 (디버깅 및 요구사항 반영 완료) --- */
 
 let currentMode = 'LEAD';
 let currentAnswer = "";
 let isAuto = false;
-let countInterval = null; // 카운트다운 인터벌 변수 추가
+let countInterval = null;
 
-// 1. 핵심 TTS 함수 (카운트다운과 연동)
+// 1. 핵심 TTS 함수
 function speak(text, callback) {
     window.speechSynthesis.cancel(); 
+    
+    if (!text) {
+        if (callback) callback();
+        return;
+    }
+
     const utterance = new SpeechSynthesisUtterance(text.replace(/<br>/g, " "));
     utterance.lang = 'ko-KR';
     utterance.rate = 1.1;
 
     utterance.onend = function() {
-        // 자동 모드일 때만 말이 끝나고 카운트다운 시작
         if (isAuto && typeof callback === 'function') {
-            startCountdown(5, callback); 
+            // 음성 종료 후 안정적으로 카운트다운 시작
+            setTimeout(() => {
+                if(isAuto) startCountdown(5, callback);
+            }, 500);
         }
     };
     window.speechSynthesis.speak(utterance);
@@ -450,7 +458,6 @@ function startCountdown(seconds, callback) {
     
     if(countInterval) clearInterval(countInterval); 
     
-    // 카운트다운 시작 시 화면에 표시
     if(display) {
         display.style.display = "flex"; 
         display.innerText = timeLeft; 
@@ -468,8 +475,8 @@ function startCountdown(seconds, callback) {
             if(display) display.innerText = timeLeft;
         } else {
             clearInterval(countInterval);
-            if(display) display.style.display = "none"; // 종료 시 숨김
-            callback(); 
+            if(display) display.style.display = "none";
+            if (typeof callback === 'function') callback(); 
         }
     }, 1000);
 }
@@ -498,7 +505,9 @@ function generateNewQuestion() {
         const defT = teamNames[1];
         const randomNum = Math.floor(Math.random() * 99) + 1;
 
-        document.getElementById('info-pos').innerText = actualMode === 'LEAD' ? "리 드" : "트레일";
+        document.getElementById('info-pos').innerText = actualMode === 'LEAD' ? "L 심판" : "T 심판";
+        
+        // 뱃지 표시 설정 (요청사항: [팀명 O], [팀명 D])
         setBadge('info-off', offT, true);
         setBadge('info-def', defT, false);
 
@@ -510,27 +519,64 @@ function generateNewQuestion() {
     }
 }
 
-// 4. 수동 조작 시 자동 모드 강제 해제
+// 4. 수동 조작: 문제 버튼
 function handleManualQuestion() {
     stopAuto(); 
     generateNewQuestion();
-    speak(document.getElementById('display-situation').innerText);
+    
+    let badgeInfo = "";
+    if (currentMode !== 'QUIZ') {
+        const pos = document.getElementById('info-pos').innerText;
+        // 음성 안내는 "오", "디"로 읽도록 처리
+        const off = document.getElementById('info-off').innerText.replace("O", "오");
+        const def = document.getElementById('info-def').innerText.replace("D", "디");
+        badgeInfo = `${pos}, ${off}, ${def}, `;
+    }
+    
+    const questionText = document.getElementById('display-situation').innerText;
+    speak(badgeInfo + questionText);
 }
 
+// 5. 수동 조작: 정답 버튼
 function handleManualAnswer() {
-    stopAuto(); 
-    document.getElementById('display-guide').innerHTML = currentAnswer;
-    speak(document.getElementById('display-guide').innerText);
+    if (!isAuto) {
+        document.getElementById('display-guide').innerHTML = currentAnswer;
+        const answerText = document.getElementById('display-guide').innerText;
+        speak(answerText);
+    }
 }
 
-// 5. 자동 모드 흐름 제어
+// 6. 자동 모드 제어 (HTML의 toggleAutoMode와 이름 일치시킴)
+function toggleAutoMode() {
+    isAuto = !isAuto;
+    const btn = document.getElementById('auto-toggle-btn');
+    
+    if (isAuto) {
+        btn.innerText = "🛑 자동 모드 중지";
+        btn.classList.add('active-mode'); // CSS 효과 적용
+        runAutoFlow('question');
+    } else {
+        stopAuto();
+    }
+}
+
+// 7. 자동 모드 흐름
 function runAutoFlow(step) {
     if (!isAuto) return;
 
     if (step === 'question') {
         generateNewQuestion();
-        const text = document.getElementById('display-situation').innerText;
-        speak(text, () => runAutoFlow('answer'));
+        
+        let badgeInfo = "";
+        if (currentMode !== 'QUIZ') {
+            const pos = document.getElementById('info-pos').innerText;
+            const off = document.getElementById('info-off').innerText.replace("O", "오");
+            const def = document.getElementById('info-def').innerText.replace("D", "디");
+            badgeInfo = `${pos}, ${off}, ${def}, `;
+        }
+        
+        const questionText = document.getElementById('display-situation').innerText;
+        speak(badgeInfo + questionText, () => runAutoFlow('answer'));
     } else {
         document.getElementById('display-guide').innerHTML = currentAnswer;
         const text = document.getElementById('display-guide').innerText;
@@ -538,19 +584,7 @@ function runAutoFlow(step) {
     }
 }
 
-function toggleAutoMode() {
-    isAuto = !isAuto;
-    const btn = document.getElementById('auto-toggle-btn');
-    if (isAuto) {
-        btn.innerText = "🛑 자동 모드 중지";
-        btn.style.background = "#c0392b";
-        runAutoFlow('question');
-    } else {
-        stopAuto();
-    }
-}
-
-// 6. 모든 자동화 프로세스 중단 (초기화)
+// 8. 모든 자동화 프로세스 중단
 function stopAuto() {
     isAuto = false;
     if (countInterval) clearInterval(countInterval); 
@@ -559,29 +593,38 @@ function stopAuto() {
     const display = document.getElementById('countdown');
     if (display) {
         display.innerText = "";
-        display.style.display = "none"; // 화면에서 제거
+        display.style.display = "none";
     }
     
     const btn = document.getElementById('auto-toggle-btn');
-    btn.innerText = "🔄 자동 모드 시작";
-    btn.style.background = "#2c3e50";
+    if (btn) {
+        btn.innerText = "🔄 자동 모드 시작";
+        btn.classList.remove('active-mode');
+        btn.style.background = "#2c3e50"; // 원래 색상 복구
+    }
 }
 
-// 7. 뱃지 및 모드 설정
+// 9. 뱃지 설정 (O, D 표기)
 function setBadge(id, teamName, isOffense = false) {
     const el = document.getElementById(id);
     const color = colorMap[teamName];
-    if(!color) return;
-    el.innerText = isOffense ? `${teamName} 🏀` : teamName;
+    if(!color || !el) return;
+
+    const roleText = isOffense ? "O" : "D";
+    el.innerText = `${teamName} ${roleText}`;
+    
     el.style.backgroundColor = color.bg;
     el.style.color = color.text;
 }
 
+// 10. 모드 설정
 function setMode(mode) {
     stopAuto();
     currentMode = mode;
     document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.innerText === (mode === 'ALL' ? '2PO' : mode));
+        const btnText = btn.innerText;
+        const targetText = (mode === 'ALL' ? '2PO' : mode);
+        btn.classList.toggle('active', btnText === targetText);
     });
     document.getElementById('badge-area').style.visibility = (mode === 'QUIZ') ? 'hidden' : 'visible';
     generateNewQuestion();
